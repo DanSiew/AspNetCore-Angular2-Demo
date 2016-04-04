@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "module": "commonjs",
+    "outDir": "../wwwroot/appScripts",
+    "target": "es5"
+  },
+  "ambientDependencies": {
+    "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#6697d6f7dadbf5773cb40ecda35a76027e0783b2"
+  },
+
+  "exclude": [
+    "node_modules",
+    "typings/main.d.ts",
+    "typings/main",
+    "typings/es6-shim.d.ts",
+    "typings/browser.d.ts",
+    "typings/es6-collection.d.ts",
+    "typings/es6-promise.d.ts"
+  ],
+  "filesGlob": [
+    "./appScripts/**/*.ts",
+    "./test/**/*.ts",
+    "!./node_modules/**/*.ts",
+    "src/custom_typings.d.ts",
+    "typings/browser.d.ts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
+}
