@@ -1,10 +1,11 @@
-﻿/*
+﻿/// <binding BeforeBuild='clean, moveToLibs' AfterBuild='moveToScripts' />
+/*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 */
 
 var gulp = require('gulp');
-var ts = require('gulp-typescript');
+var del = require('del');
 
 var paths = {
     npmSrc: "./node_modules/",
@@ -14,6 +15,11 @@ var paths = {
     scriptsTarget: "./wwwroot/appScripts/",
     htmlTarget: "./wwwroot/contents/"
 };
+
+gulp.task('clean', function () {
+    return del([paths.scriptsTarget]);
+});
+
 
 var libsToMove = [
    paths.npmSrc + '/jquery/dist/jquery.js',
@@ -33,21 +39,6 @@ var libsToMove = [
 
 gulp.task('moveToLibs', function () {
     return gulp.src(libsToMove).pipe(gulp.dest(paths.libTarget));
-});
-
-
-
-gulp.task('buildTypescripts', function () {
-    return gulp.src([
-        'node_modules/angular2/typings/browser.d.ts',
-        paths.appScript + '/**/*.ts'])
-		.pipe(ts({
-		    noImplicitAny: true,
-		    "emitDecoratorMetadata": true,
-		    "experimentalDecorators": true,
-		    out: '*.js'
-		}))
-		.pipe(gulp.dest(paths.scriptsTarget));
 });
 
 
