@@ -48,7 +48,6 @@ node_modules
 *.sln.docstates
 
 # Build results
-appScripts/
 libs/
 [Dd]ebug/
 [Rr]elease/
