@@ -1,5 +1,4 @@
-﻿/// <reference path="../node_modules/@angular/platform-browser-dynamic/platform_browser_private.d.ts" />
-/// <reference path="../typings/tsd.d.ts" />
+﻿/// <reference path="../typings/tsd.d.ts" />
 
 
 import {Component, provide} from '@angular/core';
