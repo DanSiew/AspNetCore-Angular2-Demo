@@ -3,28 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <title>Demo</title>
-    <script src="libs/es6-shim.js"></script>
-    <script src="libs/system-polyfills.js"></script>
-    <script src="libs/angular2-polyfills.js"></script>
-    <script src="libs/system.js"></script>
-    <script src="libs/rx.js"></script>
-    <script src="libs/reflect.js"></script>
-    <script src="libs/shims_for_IE.js"></script>
+    <script src="libs/shim.min.js"></script>
+    <script src="libs/zone.js"></script>
+    <script src="libs/Reflect.js"></script>
+    <script src="libs/system.src.js"></script>
 
-    <script src="libs/angular2.dev.js"></script>
-    <script src="libs/router.dev.js"></script>
-    <script src="libs/http.dev.js"></script>
 
-    <script src="appScripts/config.js"></script>
+    <script src="appScripts/systemjs.config.js"></script>
 
     <script>
-      System.import('appScripts/dist/app.component')
-        .then(null, console.error.bind(console));
+        System.import('app').catch(function (err) { console.error(err); });
     </script>
 
 
 </head>
 <body>
-    <main-app></main-app>
+    <main-app>Loading...</main-app>
 </body>
 </html>

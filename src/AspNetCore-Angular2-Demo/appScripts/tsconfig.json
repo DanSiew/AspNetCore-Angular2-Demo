@@ -16,10 +16,11 @@
 
   "exclude": [
     "node_modules",
+    "node_modules/@angular",
     "typings/main.d.ts",
     "typings/main",
     "typings/es6-shim.d.ts",
-    "typings/browser.d.ts",
+    "typings/platform_browser_private.d.ts",
     "typings/es6-collection.d.ts",
     "typings/es6-promise.d.ts"
   ],

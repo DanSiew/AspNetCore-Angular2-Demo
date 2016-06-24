@@ -1,9 +1,8 @@
-﻿/// <reference path="../node_modules/angular2/typings/browser.d.ts" />
+﻿/// <reference path="../node_modules/@angular/platform-browser-dynamic/platform_browser_private.d.ts" />
+/// <reference path="../typings/tsd.d.ts" />
 
 
-import {Component, provide} from 'angular2/core';
-import {bootstrap}    from 'angular2/platform/browser'
-import 'rxjs/Rx'; // load the full rxjs
+import {Component, provide} from '@angular/core';
 
 @Component({
     selector: 'main-app',
@@ -11,10 +10,5 @@ import 'rxjs/Rx'; // load the full rxjs
 })
 
 
-class MainApp {
-    constructor() { }
+export class AppComponent {
 }
-
-bootstrap(MainApp, [])
-    .then(success => console.log(`Bootstrap success`))
-    .catch(error => console.log(error));
