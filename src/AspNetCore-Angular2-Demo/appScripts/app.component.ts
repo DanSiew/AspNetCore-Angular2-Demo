@@ -1,13 +1,18 @@
 ﻿/// <reference path="../typings/tsd.d.ts" />
 
 
-import {Component, provide} from '@angular/core';
+import {Component} from '@angular/core';
+
 
 @Component({
-    selector: 'main-app',
-    template: `<h1>Demo of Angular 2 using ASP.NET Core with Visual Studio 2015</h1>`
+    selector: 'pm-app',
+    template: `<div>
+                <h1>{{pageTitle}}</h1>
+                </div>
+                `
 })
 
 
 export class AppComponent {
+    pageTitle: string = 'Home Product Management';
 }

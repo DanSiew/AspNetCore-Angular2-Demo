@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='clean, moveToLibs, moveAngularToLibs, moveAngularWebApiToLibs, moveRxjsToLibs' AfterBuild='moveToScripts' />
+﻿/// <binding BeforeBuild='clean, moveToLibs, moveAngularToLibs, moveAngularWebApiToLibs, moveRxjsToLibs, moveToHtmlCss, moveLessToContents' AfterBuild='moveToScripts' />
 /*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
@@ -6,24 +6,26 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 
 var gulp = require('gulp');
 var del = require('del');
+var less = require('gulp-less');
 
 var paths = {
     npmSrc: "./node_modules/",
-    libTarget: "./wwwroot/libs/",
     appConfig: "./app-config/",
     appScript: "./appScripts/",
     scriptsTarget: "./wwwroot/appScripts/",
-    htmlTarget: "./wwwroot/contents/"
+    htmlTarget: "./wwwroot/contents/",
+    libTarget: "./wwwroot/libs/"
 };
+gulp.task('clean', function () {
+    return del([paths.libTarget]);
+});
 
 gulp.task('clean', function () {
-    return del([paths.scriptsTarget, paths.libTarget]);
+    return del([paths.scriptsTarget, paths.htmlTarget]);
 });
 
 
 var libsToMove = [
-   //paths.npmSrc + '/jquery/dist/jquery.js',
-
    paths.npmSrc + '/core-js/client/shim.min.js',
    paths.npmSrc + '/zone.js/dist/zone.js',
    paths.npmSrc + '/reflect-metadata/reflect.js',
@@ -63,10 +65,30 @@ gulp.task('moveRxjsToLibs', function () {
 
 
 var scrsToMove = [
-   paths.appScript + '/**/**/*.js',
-   paths.appConfig + '/systemjs.config.js'
+    paths.appScript + '/**/**/*.js', paths.appScript + '/**/**/*.html', paths.appScript + '/**/**/*.css',
+    paths.appConfig + '/systemjs.config.js'
 ];
 
 gulp.task('moveToScripts', function () {
     return gulp.src(scrsToMove).pipe(gulp.dest(paths.scriptsTarget));
+}); ''
+
+
+var htmlcssToMove = [
+    paths.appScript + '/**/**/*.html',
+    paths.appScript + '/**/**/*.css',
+    paths.npmSrc + '/bootstrap/dist/css/bootstrap.css'
+];
+
+gulp.task('moveToHtmlCss', function () {
+    return gulp.src(htmlcssToMove).pipe(gulp.dest(paths.htmlTarget));
 });
+
+var lessToMove = [
+    paths.appScript + '/**/**/*.less'
+];
+
+gulp.task('moveLessToContents', function () {
+    return gulp.src(lessToMove).pipe(less()).pipe(gulp.dest(paths.htmlTarget));
+});
+
