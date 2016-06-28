@@ -48,6 +48,7 @@ node_modules
 *.sln.docstates
 
 # Build results
+fonts/
 libs/
 [Dd]ebug/
 [Rr]elease/

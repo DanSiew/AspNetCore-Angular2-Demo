@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='clean, moveToLibs, moveAngularToLibs, moveAngularWebApiToLibs, moveRxjsToLibs, moveToHtmlCss, moveLessToContents' AfterBuild='moveToScripts' />
+﻿/// <binding BeforeBuild='clean, moveAngularWebApiToLibs' AfterBuild='moveToScripts, moveToHtmlCss, moveLessToContents, moveToDatas' />
 /*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
@@ -14,11 +14,13 @@ var paths = {
     appScript: "./appScripts/",
     scriptsTarget: "./wwwroot/appScripts/",
     htmlTarget: "./wwwroot/contents/",
-    libTarget: "./wwwroot/libs/"
+    libTarget: "./wwwroot/libs/",
+    fontTarget: "./wwwroot/fonts/"
 };
+/*
 gulp.task('clean', function () {
     return del([paths.libTarget]);
-});
+});*/
 
 gulp.task('clean', function () {
     return del([paths.scriptsTarget, paths.htmlTarget]);
@@ -64,15 +66,34 @@ gulp.task('moveRxjsToLibs', function () {
 });
 
 
+
+gulp.task('fonts', function () {
+    return gulp.src([
+        paths.npmSrc + '/font-awesome/fonts/fontawesome-webfont.*',
+        paths.npmSrc + '/bootstrap/fonts/*.*'
+    ])
+            .pipe(gulp.dest(paths.fontTarget));
+});
+
+
+
+var dataToMove = [
+    paths.appScript + '/**/**/*.json', '!/**/**/tsconfig.json'
+];
+
+gulp.task('moveToDatas', function () {
+    return gulp.src(dataToMove).pipe(gulp.dest(paths.scriptsTarget));
+});
+
+
 var scrsToMove = [
-    paths.appScript + '/**/**/*.js', paths.appScript + '/**/**/*.html', paths.appScript + '/**/**/*.css',
+    paths.appScript + '/**/**/*.js',
     paths.appConfig + '/systemjs.config.js'
 ];
 
 gulp.task('moveToScripts', function () {
     return gulp.src(scrsToMove).pipe(gulp.dest(paths.scriptsTarget));
-}); ''
-
+});
 
 var htmlcssToMove = [
     paths.appScript + '/**/**/*.html',
