@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='clean, moveAngularWebApiToLibs' AfterBuild='moveToScripts, moveToHtmlCss, moveLessToContents, moveToDatas' />
+﻿/// <binding BeforeBuild='clean, moveAngularWebApiToLibs, moveAngularToLibs, moveRxjsToLibs, moveToLibs' AfterBuild='moveToScripts, moveToHtmlCss, moveLessToContents, moveToDatas' />
 /*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
@@ -17,10 +17,10 @@ var paths = {
     libTarget: "./wwwroot/libs/",
     fontTarget: "./wwwroot/fonts/"
 };
-/*
+
 gulp.task('clean', function () {
     return del([paths.libTarget]);
-});*/
+});
 
 gulp.task('clean', function () {
     return del([paths.scriptsTarget, paths.htmlTarget]);
@@ -98,6 +98,7 @@ gulp.task('moveToScripts', function () {
 var htmlcssToMove = [
     paths.appScript + '/**/**/*.html',
     paths.appScript + '/**/**/*.css',
+    paths.appScript + '/**/**/*.png',
     paths.npmSrc + '/bootstrap/dist/css/bootstrap.css'
 ];
 
