@@ -1,19 +1,18 @@
 ﻿
 import { Component, OnInit }  from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
+import {Router} from '@angular/router';
 
 import { IProduct } from './product';
-import { ProductFilterPipe } from './product-filter.pipe';
-import { StarComponent } from '../shared/star.component';
 import { ProductService } from './product.service';
+
 
 @Component({
     selector: 'hpm-products',
     templateUrl: 'contents/products/product-list.html',
-    styleUrls: ['contents/products/product-list.css'],
-    pipes: [ProductFilterPipe],
-    directives: [StarComponent, ROUTER_DIRECTIVES]
+    styleUrls: ['contents/products/product-list.css']
 })
+
+
 export class ProductListComponent {
     pageTitle: string = 'Product List';
     imageWidth: number = 50;
@@ -24,7 +23,9 @@ export class ProductListComponent {
     products: IProduct[] = [];
 
 
-        constructor(private _productService: ProductService) {
+    constructor(
+        private router: Router,
+        private _productService: ProductService) {
     
     }
 
@@ -40,5 +41,10 @@ export class ProductListComponent {
     
         onRatingClicked(message: string): void {
             this.pageTitle = 'Product List: ' + message;
+        }
+
+        gotoDetail(product: IProduct): void {
+            let link = ['/product', product.productId];
+            this.router.navigate(link);
         }
 }

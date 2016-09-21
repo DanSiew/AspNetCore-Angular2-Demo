@@ -7,7 +7,7 @@
     "removeComments": false,
     "sourceMap": true,
     "module": "commonjs",
-    "outDir": "../appScripts/dist",
+    "outDir": "../wwwroot/appScripts/dist",
     "target": "es5"
   },
   "ambientDependencies": {

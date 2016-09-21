@@ -5,6 +5,7 @@
     selector: 'ai-star',
     templateUrl: 'contents/shared/star.html',
     styleUrls: ['contents/shared/star.css']
+   
 })
 export class StarComponent implements OnChanges {
     @Input() rating: number;

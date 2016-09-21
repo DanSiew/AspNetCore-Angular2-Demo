@@ -1,15 +1,8 @@
-﻿/// <reference path="../typings/tsd.d.ts" />
+﻿/// <reference path="../typings/index.d.ts" />
 
 import 'rxjs/Rx';
-import { bootstrap }    from '@angular/platform-browser-dynamic';
-import { AppComponent } from './app.component';
-import {APP_BASE_HREF} from '@angular/common';
-import {provide} from '@angular/core';
-import { appRouterProviders } from './app.routes';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {  platformBrowserDynamic  }    from '@angular/platform-browser-dynamic';
+import { AppModule } from './app.module';
 
-bootstrap(AppComponent, [
-    appRouterProviders,
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    provide(APP_BASE_HREF, { useValue: '/' })
-]); 
+
+platformBrowserDynamic().bootstrapModule(AppModule);

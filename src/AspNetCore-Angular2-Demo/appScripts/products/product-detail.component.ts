@@ -7,8 +7,7 @@ import { ProductService } from './product.service';
 import { StarComponent } from '../shared/star.component';
 
 @Component({
-    templateUrl: 'contents/products/product-detail.html',
-    directives: [StarComponent]
+    templateUrl: 'contents/products/product-detail.html'
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
     pageTitle: string = 'Product Detail';
